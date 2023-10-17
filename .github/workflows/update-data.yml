@@ -29,5 +29,7 @@ jobs:
           git config user.name johnray000
           git add .
           git commit -m "Actualización de datos [skip ci]"
-          git push https://TOKEN001@github.com/${{ github.repository }}.git
+          git push origin main
+        env:
+          TOKEN: ${{ secrets.TOKEN001 }}
 
