@@ -3,6 +3,7 @@ name: Actualización de Datos
 on:
   schedule:
     - cron: '0 8,13,18 * * 1-5'  # Ejecutar a las 8 AM, 1 PM y 6 PM, de lunes a viernes
+  workflow_dispatch:
 
 jobs:
   update-data:
