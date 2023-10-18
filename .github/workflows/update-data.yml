@@ -29,6 +29,6 @@ jobs:
           git config user.name johnray000
           git add .
           git commit -m "Actualización de datos [skip ci]"
-          git push https://TOKEN001@github.com/johnray000/pruebas-vite3.git HEAD:main
+          git push https://${{ secrets.PAT_PRUEBA }}@github.com/johnray000/pruebas-vite3.git
 
 
