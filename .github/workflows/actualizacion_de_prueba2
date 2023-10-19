@@ -1,0 +1,37 @@
+name: actualizacion_de_prueba2
+
+on:
+  schedule:
+    - cron: '0 8,13,18 * * 1-5'  # Ejecutar a las 8 AM, 1 PM y 6 PM, de lunes a viernes
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Ajusta la versión según tu configuración de Vite
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Ejecutar Actualización de Datos
+        run: node ./src/data/update-data.js
+
+      - name: Configure Git
+        run: |
+          git config user.email "johnray000@gmail.com"
+          git config user.name "johnray000"
+
+      - name: Commit Changes
+        run: |
+          git add .
+          git commit -m "Actualización de datos [skip ci]"
+
+      - name: Push Changes
+        run: git push https://${{ secrets.PAT_PRUEBA }}@github.com/johnray000/pruebas-vite3.git HEAD:main
