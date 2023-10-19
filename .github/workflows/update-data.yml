@@ -34,4 +34,4 @@ jobs:
           git commit -m "Actualización de datos [skip ci]"
 
       - name: Push Changes
-        run: git push https://$PAT_PRUEBA@github.com/johnray000/pruebas-vite3.git HEAD:main
+        run: git push https://${{ secrets.PAT_PRUEBA2 }}@github.com/johnray000/pruebas-vite3.git HEAD:main
