@@ -26,5 +26,5 @@ jobs:
       - name: Push new README.md
         uses: mikeal/publish-to-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_TRES }}
+          GITHUB_TOKEN: ${{ secrets.ENVIROMENT_DOS }}
           BRANCH_NAME: 'main'
