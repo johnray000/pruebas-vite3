@@ -23,17 +23,8 @@ jobs:
       - name: Ejecutar Actualización de Datos
         run: node ./src/data/update-data.js
 
-      - name: Configure Git
-        run: |
-          git config user.email "johnray000@gmail.com"
-          git config user.name "johnray000"
-
-      - name: Commit Changes
-        run: |
-          git add .
-          git commit -m "Actualización de datos [skip ci]"
-
-      - name: Push Changes
-        run: |
-          git remote set-url origin https://${{ secrets.PAT_PRUEBA }}@github.com/johnray000/pruebas-vite3.git
-          git push origin HEAD:main
+      - name: Push new README.md
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_PRUEBA }}
+          BRANCH_NAME: 'main'
