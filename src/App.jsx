@@ -1,5 +1,6 @@
 import { useState } from "react";
 import bexoLogo from "./assets/bexo-logo.png";
+import CardPrueba from "./components/CardPrueba";
 
 //import "./App.css";
 
@@ -27,9 +28,11 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="md:col-start-1">Click on the Vite and React logos to learn more</p>
+      <p className="md:col-start-1">
+        Click on the Vite and React logos to learn more
+      </p>
       <div className="md:col-start-2 md:row-start-3 md:row-span-9 row-span-4 border border-yellow-400">
-        {/* <LineChartUsageExample/> */}
+        <CardPrueba />
       </div>
       <p className="">Precios 2</p>
     </div>
