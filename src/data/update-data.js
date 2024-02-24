@@ -12,7 +12,7 @@ function getUTCWeek(date) {
 
 async function fetchData() {
   try {
-    const response = await axios.get('https://api.yadio.io/exrates/VES');
+    const response = await axios.get("https://api.yadio.io/exrates/VES");
     const data = response.data;
     const dolarYadio = parseFloat((1 / data.VES.USD).toFixed(2));
 
@@ -20,18 +20,31 @@ async function fetchData() {
     const currentDate = new Date();
     const weekNumber = getUTCWeek(currentDate);
 
+    // Obtener la fecha en formato dd/mm
+    const formattedDate = currentDate
+      .toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit" })
+      .replace(/\//g, "/");
+
+    // Obtener la fecha abreviada en formato "mes día"
+    const formattedAbbreviatedDate = currentDate.toLocaleDateString("es-ES", {
+      month: "short",
+      day: "numeric",
+    });
+
     // Devolvemos los nuevos datos
     return {
-      fecha: new Date().toISOString(),
+      fecha: currentDate.toISOString(),
       dolarYadio: dolarYadio,
       semana: weekNumber,
+      fecha_numerica: formattedDate,
+      fecha_abreviada: formattedAbbreviatedDate,
     };
   } catch (error) {
-    console.error('Error al obtener datos:', error.message);
+    console.error("Error al obtener datos:", error.message);
     return {
       fecha: new Date().toISOString(),
-      error: error.message
-    }
+      error: error.message,
+    };
   }
 }
 
@@ -40,18 +53,20 @@ async function updateData() {
   try {
     // Obtener datos nuevos
     const newData = await fetchData();
-   
+
     // Leer el JSON original
-    jsonData = JSON.parse(fs.readFileSync('./src/data/data.json', 'utf8'));    
+    jsonData = JSON.parse(fs.readFileSync("./src/data/data.json", "utf8"));
     jsonData.push(newData);
 
     // Guardar los datos actualizados en el archivo original
-    fs.writeFileSync('./src/data/data.json', JSON.stringify(jsonData));
+    fs.writeFileSync("./src/data/data.json", JSON.stringify(jsonData));
 
     // Leer el archivo de actualizaciones (si existe)
     let updateData = [];
     try {
-      updateData = JSON.parse(fs.readFileSync('./src/data/updates.json', 'utf8'));
+      updateData = JSON.parse(
+        fs.readFileSync("./src/data/updates.json", "utf8")
+      );
     } catch (error) {
       // No hay archivo de actualizaciones (podría no existir en la primera ejecución)
     }
@@ -60,14 +75,13 @@ async function updateData() {
     updateData.push(newData);
 
     // Guardar los datos actualizados en el archivo de actualizaciones
-    fs.writeFileSync('./src/data/updates.json', JSON.stringify(updateData));
+    fs.writeFileSync("./src/data/updates.json", JSON.stringify(updateData));
 
-    console.log('Datos actualizados correctamente.',newData);
-  } catch (error) {    
-    console.error('Error al actualizar datos:', error.message);
+    console.log("Datos actualizados correctamente.", newData);
+  } catch (error) {
+    console.error("Error al actualizar datos:", error.message);
   }
 }
 
 // Llamar a la función para realizar la actualización
 updateData();
-
