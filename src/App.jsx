@@ -1,6 +1,7 @@
 import { useState } from "react";
 import bexoLogo from "./assets/bexo-logo.png";
 import { Grafico_ARS_withCustomTooltip } from "./components/GraficoARSwithCustomTooltip";
+import ChartVES_withTab from "./components/ChartVES_withTab";
 
 //import "./App.css";
 
@@ -20,10 +21,8 @@ function App() {
         />{" "}
       </div>
       <h4 className="md:col-span-2">Menu</h4>
-      <div className="grid place-items-center row-span-4 md:row-span-9 border rounded-lg border-gray-300">        
-        <p>
-          PROBRAR GRAFICO VES CUSTOM DE UNA
-        </p>
+      <div className="grid row-span-4 md:row-span-9 border rounded-lg border-gray-300">        
+        <ChartVES_withTab/>
       </div>
       <p className="md:col-start-1">
         Click on the Vite and React logos to learn more

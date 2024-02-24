@@ -1,13 +1,12 @@
 
 (desglosar estas tareas mejor si es necesario)
 
--seguir con el grafico q customize con tabsDataByOptions, esta en: \Practicas react-vite\prueba002\src\componentes\lineChartVES.jsx hacerle un branch a ese proyecto y arreglar para q jale y cambie el formato
-
--cambiar los registros q ya tengo manualmente a formato completo
+-adecuar el grafico con tabsDataByOptions q esta en: \Practicas react-vite\prueba002\src\componentes\lineChartVES.jsx necesito tener la data con el formato
 
 -agrgar el fetch q me falta pa ARS
 
 ##READY
+-cambiar los registros q ya tengo manualmente a formato completo
 -luego probar escribir en el archivo
 -Probar haciendo unos console log pa igualar el formato completo
 -cambiar el formato de fecha
