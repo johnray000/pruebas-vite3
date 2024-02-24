@@ -21,14 +21,14 @@ function App() {
         />{" "}
       </div>
       <h4 className="md:col-span-2">Menu</h4>
-      <div className="grid row-span-4 md:row-span-9 border rounded-lg border-gray-300">        
+      <div className="grid row-span-4 md:row-span-9">        
         <ChartVES_withTab/>
       </div>
       <p className="md:col-start-1">
         Click on the Vite and React logos to learn more
       </p>
       <div className="md:col-start-2 md:row-start-3 md:row-span-9 row-span-4 border rounded-lg border-gray-300">
-        <Grafico_ARS_withCustomTooltip />
+        {/* <Grafico_ARS_withCustomTooltip /> */}
       </div>
       <p className="">Precios 2</p>
     </div>

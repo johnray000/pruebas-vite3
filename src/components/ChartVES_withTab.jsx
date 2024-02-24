@@ -47,9 +47,9 @@ export default () => {
   };
 
   return (
-    <Card className="h-full border border-yellow-600 p-1">
-      <div className="flex justify-between border border-red-500">
-        <Title >
+    <Card className="max-h-72 md:min-h-full border border-yellow-600 p-1">
+      <div className="flex justify-between items-center">
+        <Title className="text-xs" >
           Precio del Dolar VZLA ☢️
         </Title>
         <TabGroup
@@ -65,7 +65,7 @@ export default () => {
         </TabGroup>
       </div>
       <LineChart
-      className="h-[28vh]"
+        className="h-[calc(100%-2.3rem)] border border-blue-500"      
         data={chartData}
         index="fecha_abreviada"
         categories={["dolarYadio"]}
