@@ -30,7 +30,7 @@ export default () => {
       const groupedData = jsonData.reduce((acc, entry) => {
         const key =
           option === "Semanas"
-            ? entry.semana
+            ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
             : entry.fecha_abreviada.split(" ")[0];
         acc[key] = entry;
         return acc;
@@ -38,6 +38,7 @@ export default () => {
       return Object.values(groupedData);
     }
   };
+  
 
   const handleDateOptionChange = (index) => {
     setSelectedIndex(index);
