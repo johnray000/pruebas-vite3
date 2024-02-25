@@ -1,12 +1,4 @@
-import {
-  Card,
-  Title,
-  LineChart,
-  Tab,
-  TabGroup,
-  TabList,
-  
-} from "@tremor/react";
+import { Card, Title, LineChart, Tab, TabGroup, TabList } from "@tremor/react";
 import React, { useEffect, useState } from "react";
 import jsonData from "../data/data.json";
 
@@ -16,29 +8,33 @@ const valueFormatter = (number) =>
 export default () => {
   const [chartData, setChartData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const dateOptions = ["Días", "Semanas", "Meses"];
+  const dateOptions = ["Días", "Semanas", "Meses"]; 
 
   useEffect(() => {
     setChartData(jsonData);
   }, []);
+  
 
   const filterDataByOption = (option) => {
-    if (option === "Días") {
-      return jsonData;
+    if (option === "Días") {      
+      const sampledData = jsonData.filter((entry, index) => index % 3 === 0); // Muestrear solo para la opción "Días"
+      return sampledData;
+      //return jsonData;
     } else if (option === "Semanas" || option === "Meses") {
       // Agrupar por Semana o Mes y seleccionar el último valor
       const groupedData = jsonData.reduce((acc, entry) => {
         const key =
           option === "Semanas"
             ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
-            : entry.fecha_abreviada.split(" ")[0];
+            : entry.fecha_abreviada.substr(
+                entry.fecha_abreviada.indexOf(" ") + 1
+              );
         acc[key] = entry;
         return acc;
       }, {});
       return Object.values(groupedData);
     }
   };
-  
 
   const handleDateOptionChange = (index) => {
     setSelectedIndex(index);
@@ -50,13 +46,11 @@ export default () => {
   return (
     <Card className="max-h-72 md:min-h-full border border-yellow-600 p-1">
       <div className="flex justify-between items-center">
-        <Title className="text-xs" >
-          Precio del Dolar VZLA ☢️
-        </Title>
+        <Title className="text-xs">Precio del Dolar VZLA ☢️</Title>
         <TabGroup
           index={selectedIndex}
           onIndexChange={handleDateOptionChange}
-          className="max-w-fit border border-green-300"          
+          className="max-w-fit"
         >
           <TabList color="gray" variant="solid">
             {dateOptions.map((option, index) => (
@@ -66,7 +60,7 @@ export default () => {
         </TabGroup>
       </div>
       <LineChart
-        className="h-[calc(100%-2.3rem)] border border-blue-500"      
+        className="h-[calc(100%-2.3rem)]"
         data={chartData}
         index="fecha_abreviada"
         categories={["dolarYadio"]}
@@ -74,10 +68,12 @@ export default () => {
         valueFormatter={valueFormatter}
         yAxisWidth={35}
         autoMinValue={true}
-        style={{
-          //marginLeft: "-1rem", // Ajusta la distancia a la izquierda
-          //border: "0.2px solid yellow" 
-        }}
+        style={
+          {
+            //marginLeft: "-1rem", // Ajusta la distancia a la izquierda
+            //border: "0.2px solid yellow"
+          }
+        }
       />
     </Card>
   );

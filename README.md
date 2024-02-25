@@ -1,12 +1,13 @@
 
 (desglosar estas tareas mejor si es necesario)
 
--hay peos con tab semana salta de feb a nov
--hay peos con el tab meses salta PEOR
+-hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
 -arreglar q en meses muestre solo el nombre del mes
 -agrgar el fetch q me falta pa ARS
 
 ##READY
+-hay peos con el tab meses salta PEOR
+-hay peos con tab semana salta de feb a nov
 -arreglar el responsive del tittle
 -arreglar el responsive del grafico
 -adecuar el grafico con tabsDataByOptions
