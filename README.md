@@ -1,11 +1,15 @@
 
 (desglosar estas tareas mejor si es necesario)
 
--adecuar el grafico con tabsDataByOptions q esta en: \Practicas react-vite\prueba002\src\componentes\lineChartVES.jsx necesito tener la data con el formato
-
+-hay peos con tab semana salta de feb a nov
+-hay peos con el tab meses salta PEOR
+-arreglar q en meses muestre solo el nombre del mes
 -agrgar el fetch q me falta pa ARS
 
 ##READY
+-arreglar el responsive del tittle
+-arreglar el responsive del grafico
+-adecuar el grafico con tabsDataByOptions
 -cambiar los registros q ya tengo manualmente a formato completo
 -luego probar escribir en el archivo
 -Probar haciendo unos console log pa igualar el formato completo
