@@ -8,15 +8,14 @@ const valueFormatter = (number) =>
 export default () => {
   const [chartData, setChartData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const dateOptions = ["Días", "Semanas", "Meses"]; 
+  const dateOptions = ["Días", "Semanas", "Meses"];
 
   useEffect(() => {
     setChartData(jsonData);
   }, []);
-  
 
   const filterDataByOption = (option) => {
-    if (option === "Días") {      
+    if (option === "Días") {
       const sampledData = jsonData.filter((entry, index) => index % 3 === 0); // Muestrear solo para la opción "Días"
       return sampledData;
       //return jsonData;
@@ -45,8 +44,13 @@ export default () => {
 
   return (
     <Card className="max-h-72 md:min-h-full p-1">
-      <div className="flex justify-between items-center">
-        <Title className="text-xs">Precio del Dolar VZLA ☢️</Title>
+      <div className="flex justify-between items-center ">
+        <div className="flex">
+          <Title className="text-base px-2">
+            Historico Dolar
+          </Title>
+          <img src="./src/assets/vzla-flag.png" className="h-8 -mt-1" />
+        </div>
         <TabGroup
           index={selectedIndex}
           onIndexChange={handleDateOptionChange}
