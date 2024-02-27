@@ -10,9 +10,14 @@ export default () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const dateOptions = ["Días", "Semanas", "Meses"];
 
-  useEffect(() => {
-    setChartData(jsonData);
-  }, []);
+  // useEffect(() => {
+  //   setChartData(jsonData); //aqui esta cargado del archivo en el primer render
+  // }, []);
+
+  useEffect(() => {//aqui obligo a usar la data primero pasada por filterDataByOption
+    const filteredData = filterDataByOption(dateOptions[selectedIndex]);
+    setChartData(filteredData);
+  }, [selectedIndex]);
 
   const filterDataByOption = (option) => {
     if (option === "Días") {

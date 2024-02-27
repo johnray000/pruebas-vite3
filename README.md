@@ -3,7 +3,9 @@
 
 -hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
 -arreglar q en meses muestre solo el nombre del mes
+-Agregar mis colores
 -agrgar el fetch q me falta pa ARS
+
 
 ##READY
 -hay peos con el tab meses salta PEOR
