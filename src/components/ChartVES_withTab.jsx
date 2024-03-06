@@ -48,8 +48,8 @@ export default () => {
   };
 
   return (
-    <Card className="max-h-72 md:min-h-full p-1">
-      <div className="flex justify-between items-center ">
+    <div className="max-h-72 md:min-h-full p-1 ">
+      <div className="flex justify-between items-center">
         <div className="flex">
           <Title className="text-base px-2">
             Historico Dolar
@@ -69,7 +69,7 @@ export default () => {
         </TabGroup>
       </div>
       <LineChart
-        className="h-[calc(100%-2.3rem)]"
+        className="h-[calc(100%-2rem)]"
         data={chartData}
         index="fecha_abreviada"
         categories={["dolarYadio"]}
@@ -77,14 +77,14 @@ export default () => {
         valueFormatter={valueFormatter}
         curveType="natural"
         yAxisWidth={35}
-        autoMinValue={true}
+        autoMinValue={true}        
         style={
           {
             //marginLeft: "-1rem", // Ajusta la distancia a la izquierda
-            //border: "0.2px solid yellow"
+           
           }
         }
       />
-    </Card>
+    </div>
   );
 };

@@ -1,13 +1,13 @@
 
 (desglosar estas tareas mejor si es necesario)
 
--hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
 -arreglar q en meses muestre solo el nombre del mes
 -Agregar mis colores
 -agrgar el fetch q me falta pa ARS
-
+-agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ##READY
+-hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
 -hay peos con el tab meses salta PEOR
 -hay peos con tab semana salta de feb a nov
 -arreglar el responsive del tittle
