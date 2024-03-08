@@ -3,6 +3,7 @@ import bexoLogo from "./assets/bexo-logo.png";
 import { Grafico_ARS_withCustomTooltip } from "./components/GraficoARSwithCustomTooltip";
 import ChartVES_withTab from "./components/ChartVES_withTab";
 import { AreaChartExample } from "./components/ChartAreaPrueba";
+import { CardSimple } from "./components/CardSimple";
 import RedesMenuIcon from "./components/Redes-Menu-Icons";
 
 //import "./App.css";
@@ -28,10 +29,10 @@ function App() {
       <div className="grid row-span-4 md:row-span-9">
         <ChartVES_withTab />
       </div>
-      <p className="md:col-start-1">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div className="md:col-start-2 md:row-start-3 md:row-span-9 row-span-4 border rounded-lg border-gray-300">
+      <div className="md:col-start-1">
+        <CardSimple/>
+      </div>
+      <div className="md:col-start-2 md:row-start-3 md:row-span-9 row-span-4">
         <AreaChartExample />
       </div>
       <p className="">Precios 2</p>
