@@ -1,6 +1,6 @@
 import { Card, Title, LineChart, Tab, TabGroup, TabList } from "@tremor/react";
 import React, { useEffect, useState } from "react";
-import jsonData from "../data/data.json";
+import jsonData from "../data/datosVES_format_completo.json";
 
 const valueFormatter = (number) =>
   `${new Intl.NumberFormat("us").format(number).toString()}`;
