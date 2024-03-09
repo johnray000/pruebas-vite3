@@ -32,4 +32,6 @@ async function processFile(inputFilePath, outputFilePath) {
 }
 
 // Llamar a la función para procesar el archivo
-processFile('./data.json', './datosVES_format_completo.json');
+processFile('./updates.json', './datosVES_format_completo.json');
+
+
