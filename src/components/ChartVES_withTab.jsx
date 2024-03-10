@@ -2,6 +2,7 @@ import { Card, Title, LineChart, Tab, TabGroup, TabList } from "@tremor/react";
 import React, { useEffect, useState } from "react";
 import jsonData from "../data/data.json";
 
+
 const valueFormatter = (number) =>
   `${new Intl.NumberFormat("us").format(number).toString()}`;
 
@@ -54,7 +55,7 @@ export default () => {
           <Title className="text-base px-2">
             Historico Dolar
           </Title>
-          <img src="src/assets/vzla-flag.png" className="h-8 -mt-1" />
+          <img src="../src/assets/vzla-flag.png" className="h-8 -mt-1" />
         </div>
         <TabGroup
           index={selectedIndex}
