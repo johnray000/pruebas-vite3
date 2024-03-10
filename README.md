@@ -7,6 +7,8 @@
 -agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ##READY
+-arreglado el icono de la pestaña
+-arreglado carga de imagenes en github pages
 -hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
 -hay peos con el tab meses salta PEOR
 -hay peos con tab semana salta de feb a nov
