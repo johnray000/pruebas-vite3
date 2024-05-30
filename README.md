@@ -7,6 +7,8 @@
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ##READY
+The background color is `#ffffff` for light mode and `#000000` for dark mode.
+
 - Arreglar custom domain con vite $\color{red}{NO FUE FACIL SEMANAS}$
 - Probar custom domain con simple HTML
 - arreglado el icono de la pestaña
