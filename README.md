@@ -6,8 +6,7 @@
 - agrgar el fetch q me falta pa ARS
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
-##READY
-
+## READY
 
 - Arreglar custom domain con vite `NO FUE FACIL SEMANAS`
 - Probar custom domain con simple HTML
