@@ -7,7 +7,7 @@
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ##READY
-- Arreglar custom domain con vite `rgb(9, 105, 218)` `probando` 
+- Arreglar custom domain con vite `rgb(9, 105, 218)` $\color{green}{test}$
 - Probar custom domain con simple HTML
 - arreglado el icono de la pestaña
 - arreglado carga de imagenes en github pages
