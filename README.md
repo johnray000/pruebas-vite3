@@ -7,6 +7,8 @@
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ##READY
+- Arreglar custom domain con vite `rgb(9, 105, 218)`
+- Probar custom domain con simple HTML
 - arreglado el icono de la pestaña
 - arreglado carga de imagenes en github pages
 - hay un peito q carga los 3 valores diarios (ya hice el filter pero no funciona en la primer carga)
