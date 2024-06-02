@@ -1,6 +1,6 @@
 
 (desglosar estas tareas mejor si es necesario)
-
+- revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
 - arreglar q en meses muestre solo el nombre del mes
 - Agregar mis colores
 - agrgar el fetch q me falta pa ARS
