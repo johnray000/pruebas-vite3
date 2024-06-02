@@ -1,13 +1,12 @@
 
 (desglosar estas tareas mejor si es necesario)
-- revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
 - arreglar q en meses muestre solo el nombre del mes
 - Agregar mis colores
 - agrgar el fetch q me falta pa ARS
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba)
 
 ## READY
-
+- revisar el actions de update-data al parecer no alcanza pa renderizar hay q hacer build y deploy completo
 - Arreglar custom domain con vite `NO FUE FACIL SEMANAS`
 - Probar custom domain con simple HTML
 - arreglado el icono de la pestaña
