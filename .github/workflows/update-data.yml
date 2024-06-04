@@ -5,8 +5,20 @@ on:
     - cron: '0 8,13,18 * * 1-5'  # Ejecutar a las 8 AM, 1 PM y 6 PM, de lunes a viernes
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write  # Agregar este permiso
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
   update-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
