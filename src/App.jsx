@@ -25,7 +25,7 @@ function App() {
       <div className="md:col-span-2 pt-2">        
         <RedesMenuIcon/>
       </div>
-      <div className="grid row-span-4 md:row-span-9 border border-green-300">
+      <div className="grid row-span-4 md:row-span-9">
         <ChartVES_withTab />
       </div>
       <div className="md:col-start-1">

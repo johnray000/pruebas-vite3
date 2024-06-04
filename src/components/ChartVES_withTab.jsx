@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import jsonData from "../data/data.json";
 import vzlaFlag from "../assets/vzla-flag.png";
 
-
 const valueFormatter = (number) =>
   `${new Intl.NumberFormat("us").format(number).toString()}`;
 
@@ -12,22 +11,17 @@ export default () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const dateOptions = ["Días", "Semanas", "Meses"];
 
-  // useEffect(() => {
-  //   setChartData(jsonData); //aqui esta cargado del archivo en el primer render
-  // }, []);
-
-  useEffect(() => {//aqui obligo a usar la data primero pasada por filterDataByOption
+  useEffect(() => {
     const filteredData = filterDataByOption(dateOptions[selectedIndex]);
-    setChartData(filteredData);
+    const mappedData = mapDataKeys(filteredData);
+    setChartData(mappedData);
   }, [selectedIndex]);
 
   const filterDataByOption = (option) => {
     if (option === "Días") {
-      const sampledData = jsonData.filter((entry, index) => index % 3 === 0); // Muestrear solo para la opción "Días"
+      const sampledData = jsonData.filter((entry, index) => index % 3 === 0);
       return sampledData;
-      //return jsonData;
     } else if (option === "Semanas" || option === "Meses") {
-      // Agrupar por Semana o Mes y seleccionar el último valor
       const groupedData = jsonData.reduce((acc, entry) => {
         const key =
           option === "Semanas"
@@ -42,15 +36,22 @@ export default () => {
     }
   };
 
+  const mapDataKeys = (data) => { //cambiar el value dolarYadio a dolarParalelo
+    return data.map(entry => ({
+      ...entry,
+      "Dolar Vzla": entry.dolarYadio
+    }));
+  };
+
   const handleDateOptionChange = (index) => {
     setSelectedIndex(index);
-    // Lógica para actualizar los datos según la opción de fecha seleccionada (días, semanas, meses)
     const filteredData = filterDataByOption(dateOptions[index]);
-    setChartData(filteredData);
+    const mappedData = mapDataKeys(filteredData);
+    setChartData(mappedData);
   };
 
   return (
-    <div className="max-h-[99%] md:min-h-full p-1 border border-orange-300">
+    <div className="max-h-[99%] md:min-h-full p-1">
       <div className="flex justify-between items-center">
         <div className="flex">
           <Title className="text-base px-2">
@@ -74,18 +75,13 @@ export default () => {
         className="h-[calc(100%-2rem)]"
         data={chartData}
         index="fecha_abreviada"
-        categories={["dolarYadio"]}
+        categories={["Dolar Vzla"]}
         colors={["red"]}
         valueFormatter={valueFormatter}
         curveType="natural"
         yAxisWidth={35}
         autoMinValue={true}        
-        style={
-          {
-            //marginLeft: "-1rem", // Ajusta la distancia a la izquierda
-           
-          }
-        }
+        style={{}}
       />
     </div>
   );
