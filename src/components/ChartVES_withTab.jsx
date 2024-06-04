@@ -50,13 +50,13 @@ export default () => {
   };
 
   return (
-    <div className="max-h-72 md:min-h-full p-1 ">
+    <div className="max-h-[99%] md:min-h-full p-1 border border-orange-300">
       <div className="flex justify-between items-center">
         <div className="flex">
           <Title className="text-base px-2">
-            Historico Dolar
+            Historico Dolar Venezuela
           </Title>
-          <img src={vzlaFlag} className="h-8 -mt-1" />
+          {/* <img src={vzlaFlag} className="h-8 -mt-1" /> */}
         </div>
         <TabGroup
           index={selectedIndex}
@@ -75,7 +75,7 @@ export default () => {
         data={chartData}
         index="fecha_abreviada"
         categories={["dolarYadio"]}
-        colors={["cyan"]}
+        colors={["red"]}
         valueFormatter={valueFormatter}
         curveType="natural"
         yAxisWidth={35}
