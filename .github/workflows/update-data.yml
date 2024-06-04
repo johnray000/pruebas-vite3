@@ -1,55 +1,30 @@
-name: Actualización de Datos y Despliegue
+name: Actualización de Datos
 
 on:
   schedule:
     - cron: '0 8,13,18 * * 1-5'  # Ejecutar a las 8 AM, 1 PM y 6 PM, de lunes a viernes
-  push:
-    branches: ['main']  # Ejecutar en cada push a la rama 'main'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
-
 jobs:
-  update-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  update-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: '18'  # Ajusta la versión según tu configuración de Vite
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
       - name: Ejecutar Actualización de Datos
         run: node ./src/data/update-data.js
 
-      - name: Build
-        run: npm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-
+      - name: Push new README.md
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_DOS }}
+          BRANCH_NAME: 'main'

@@ -1,4 +1,3 @@
-
 (desglosar estas tareas mejor si es necesario)
 
 "estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
@@ -14,14 +13,15 @@
 - pensar que meter en el espacio de precio del dia (post del blog y acentuadito el precio)
 - cambiar el nombre de la leyenda doalr Yadio a dolar paralelo o como sea
 - revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
+- agregado icon de blog y acentuado
+- probar cambiar el readme
+
 - arreglar q en meses muestre solo el nombre del mes
 - Agregar mis colores
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba) 
   - ya el ChartAreaPrueba funciona perfectamente
 
 ## READY
-
-- agregado icon de blog y acentuado
 - Arreglar custom domain con vite `NO FUE FACIL SEMANAS`
 - Probar custom domain con simple HTML
 - arreglado el icono de la pestaña
