@@ -28,12 +28,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_DOS }}
           BRANCH_NAME: 'main'
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.email "johnray000@gmail.com"
-          git config --global user.name "johnray000"
-          git add .
-          git commit -m "Actualizar datos"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_DOS }}
