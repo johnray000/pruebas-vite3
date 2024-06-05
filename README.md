@@ -3,7 +3,7 @@
 "estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
 
 - *Arreglar el tema del update y el desplige*
-- *AGREGAR EL GRAFICO de ARS*
+- *AGREGANDO EL GRAFICO de ARS*
   - agrgar el fetch q me falta pa ARS
   - **solo agregar unos registros para tener la idea, despues lo demas**
   - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)
