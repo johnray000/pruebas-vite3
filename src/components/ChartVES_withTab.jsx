@@ -36,11 +36,23 @@ export default () => {
     }
   };
 
-  const mapDataKeys = (data) => { //cambiar el value dolarYadio a dolarParalelo
-    return data.map(entry => ({
-      ...entry,
-      "Dolar Vzla": entry.dolarYadio
-    }));
+  // const mapDataKeys = (data) => { //cambiar el value dolarYadio a dolarParalelo
+  //   return data.map(entry => ({
+  //     ...entry,
+  //     "Dolar Vzla": entry.dolarYadio
+  //   }));
+  // };
+
+  const mapDataKeys = (data) => {
+    return data.map(entry => {
+      const fecha = new Date(entry.fecha);
+      const fechaAbreviadaConAno = `${fecha.getDate()} ${fecha.toLocaleString('default', { month: 'short' })} ${fecha.getFullYear()}`;
+      return {
+        ...entry,
+        "Dolar Vzla": entry.dolarYadio,
+        fecha_abreviada: fechaAbreviadaConAno // Actualizamos la fecha abreviada para incluir el año
+      };
+    });
   };
 
   const handleDateOptionChange = (index) => {

@@ -41,10 +41,15 @@ export default () => {
   };
 
   const mapDataKeys = (data) => {
-    return data.map(entry => ({
-      ...entry,
-      "Dolar Blue": entry.dolarBlue
-    }));
+    return data.map(entry => {
+      const fecha = new Date(entry.fecha);
+      const fechaAbreviadaConAno = `${fecha.getDate()} ${fecha.toLocaleString('default', { month: 'short' })} ${fecha.getFullYear()}`;
+      return {
+        ...entry,
+        "Dolar Blue": entry.dolarBlue,
+        fecha_abreviada: fechaAbreviadaConAno // Actualizamos la fecha abreviada para incluir el año
+      };
+    });
   };
 
   const handleDateOptionChange = (index) => {
