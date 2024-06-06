@@ -1,7 +1,7 @@
 (desglosar estas tareas mejor si es necesario)
 
 "estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
-
+- Agregar historico dolar oficial (asi sea para tener los datos)
 - *Arreglar el tema del update y el desplige*
 - *AGREGANDO EL GRAFICO de ARS*
   - agrgar el fetch q me falta pa ARS
