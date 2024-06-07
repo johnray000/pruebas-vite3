@@ -36,7 +36,7 @@ function App() {
         <ChartARS_withTab />
         
       </div>
-      <p className="">Precios 2</p>
+      {/* <p className="">Precios 2</p> */}
     </div>
   );
 }

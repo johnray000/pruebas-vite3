@@ -84,7 +84,7 @@ export default () => {
         </TabGroup>
       </div>
       <LineChart
-        className="h-[calc(90%-2rem)]"
+        className="h-[calc(92%-1.8rem)]"
         data={chartData}
         index="fecha_abreviada"
         categories={["Dolar Vzla"]}
