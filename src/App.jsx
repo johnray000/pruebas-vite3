@@ -1,6 +1,7 @@
 import { useState } from "react";
 import bexoLogo from "./assets/bexo-logo.png";
 import ChartVES_withTab from "./components/ChartVES_withTab";
+import ChartARS_withTab from "./components/ChartARS_withTab";
 import { AreaChartExample } from "./components/ChartAreaPrueba";
 import { CardSimple } from "./components/CardSimple";
 import RedesMenuIcon from "./components/Redes-Menu-Icons";
@@ -31,8 +32,8 @@ function App() {
       <div className="md:col-start-1">
         <CardSimple/>
       </div>
-      <div className="md:col-start-2 md:row-start-3 md:row-span-9 row-span-4">
-        <AreaChartExample />
+      <div className="grid md:col-start-2 md:row-start-3 md:row-span-9 row-span-4">
+        <ChartARS_withTab />
         
       </div>
       <p className="">Precios 2</p>

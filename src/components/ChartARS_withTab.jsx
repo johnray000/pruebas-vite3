@@ -1,6 +1,6 @@
 import { Card, Title, LineChart, Tab, TabGroup, TabList } from "@tremor/react";
 import React, { useEffect, useState } from "react";
-import jsonData from "../data/data.json";
+import jsonData from "../data/data-ARS.json";
 import vzlaFlag from "../assets/vzla-flag.png";
 
 const valueFormatter = (number) =>
@@ -18,17 +18,21 @@ export default () => {
   }, [selectedIndex]);
 
   const filterDataByOption = (option) => {
+    const now = new Date();
+    const oneYearAgo = new Date(now);
+    oneYearAgo.setFullYear(now.getFullYear() - 1);
+
     if (option === "Días") {
-      const sampledData = jsonData.filter((entry, index) => index % 3 === 0);
+      // Filtra los datos del último año y muestrea cada tercer registro
+      const sampledData = jsonData
+        .filter(entry => new Date(entry.fecha) >= oneYearAgo)
+        .filter((entry, index) => index % 3 === 0);
       return sampledData;
     } else if (option === "Semanas" || option === "Meses") {
       const groupedData = jsonData.reduce((acc, entry) => {
-        const key =
-          option === "Semanas"
-            ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
-            : entry.fecha_abreviada.substr(
-                entry.fecha_abreviada.indexOf(" ") + 1
-              );
+        const key = option === "Semanas"
+          ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
+          : entry.fecha_abreviada.substr(entry.fecha_abreviada.indexOf(" ") + 1);
         acc[key] = entry;
         return acc;
       }, {});
@@ -36,20 +40,13 @@ export default () => {
     }
   };
 
-  // const mapDataKeys = (data) => { //cambiar el value dolarYadio a dolarParalelo
-  //   return data.map(entry => ({
-  //     ...entry,
-  //     "Dolar Vzla": entry.dolarYadio
-  //   }));
-  // };
-
   const mapDataKeys = (data) => {
     return data.map(entry => {
       const fecha = new Date(entry.fecha);
       const fechaAbreviadaConAno = `${fecha.getDate()} ${fecha.toLocaleString('default', { month: 'short' })} ${fecha.getFullYear()}`;
       return {
         ...entry,
-        "Dolar Vzla": entry.dolarYadio,
+        "Dolar Blue": entry.dolarBlue,
         fecha_abreviada: fechaAbreviadaConAno // Actualizamos la fecha abreviada para incluir el año
       };
     });
@@ -67,7 +64,7 @@ export default () => {
       <div className="flex justify-between items-center">
         <div className="flex">
           <Title className="text-base px-2">
-            Historico Dolar Venezuela
+            Historico Dolar Argentina
           </Title>
           {/* <img src={vzlaFlag} className="h-8 -mt-1" /> */}
         </div>
@@ -87,8 +84,8 @@ export default () => {
         className="h-[calc(90%-2rem)]"
         data={chartData}
         index="fecha_abreviada"
-        categories={["Dolar Vzla"]}
-        colors={["red"]}
+        categories={["Dolar Blue"]}
+        colors={["cyan"]}
         valueFormatter={valueFormatter}
         curveType="natural"
         yAxisWidth={35}
