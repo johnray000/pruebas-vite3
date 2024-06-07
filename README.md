@@ -4,8 +4,7 @@
 - Agregar historico dolar oficial (asi sea para tener los datos)
 - *Arreglar el tema del update y el desplige*
 - *AGREGANDO EL GRAFICO de ARS*
-  - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)
-  - **solo agregar unos registros para tener la idea, despues lo demas**
+  - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)  
   - agrgar el fetch q me falta pa ARS
 - incorporar el link del blog 
   - agregar leyendita q diga blog y new para q llame la atencion
@@ -23,6 +22,7 @@
 
 ## READY
 - *AGREGANDO EL GRAFICO de ARS*
+  - **solo agregar unos registros para tener la idea, despues lo demas**
   - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)
 - Arreglar custom domain con vite `NO FUE FACIL SEMANAS`
 - Probar custom domain con simple HTML
