@@ -11,12 +11,17 @@ export function CardSimple() {
 
   return (
     <Card
-      className="mx-auto w-32 h-full p-2"
+      className="ml-auto w-32 h-12 p-2"
       decoration="bottom"
-      decorationColor="cyan"      
+      decorationColor="red"
     >
-      <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">Hoy {fechadehoy}</p>
-      <p className="text-2xl text-dark-tremor-brand-inverted dark:text-dark-tremor-content-strong font-semibold">{preciodehoy}</p>
-    </Card>
+      <div className="flex flex-col justify-center h-full">
+        <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content  leading-tight">
+          Vzla Hoy {fechadehoy}
+        </p>
+        <p className="text-xl text-dark-tremor-brand-inverted dark:text-dark-tremor-content-strong font-semibold leading-tight">
+          {preciodehoy}
+        </p>
+      </div></Card>
   );
 }
