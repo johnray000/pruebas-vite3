@@ -3,25 +3,22 @@
 "estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
 - Agregar historico dolar oficial (asi sea para tener los datos)
 - *Arreglar el tema del update y el desplige*
-- *AGREGANDO EL GRAFICO de ARS*
-  - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)  
-  - agrgar el fetch q me falta pa ARS
-- incorporar el link del blog 
-  - agregar leyendita q diga blog y new para q llame la atencion
-- reducir a la mitad el tamaño de la card del precio del dia 
+- agregar leyendita q diga blog y new para q llame la atencion
 - pensar que meter en el espacio de precio del dia (post del blog y acentuadito el precio)
-- cambiar el nombre de la leyenda doalr Yadio a dolar paralelo o como sea
 - revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
-- agregado icon de blog y acentuado
-- probar cambiar el readme
-
-- arreglar q en meses muestre solo el nombre del mes
 - Agregar mis colores
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba) 
   - ya el ChartAreaPrueba funciona perfectamente
 
 ## READY
+- cambiar el nombre de la leyenda doalr Yadio a dolar paralelo o como sea
+- reducir a la mitad el tamaño de la card del precio del dia 
+- incorporar el link del blog 
+- agregado icon de blog y acentuado
+- probar cambiar el readme
 - *AGREGANDO EL GRAFICO de ARS*
+  - **AGREGADO el fetch de ARS** 
+  - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien) 
   - **solo agregar unos registros para tener la idea, despues lo demas**
   - agregar y formatear y el archivo para hacer el grafico de ARS (como sea despues lo arreglo bien)
 - Arreglar custom domain con vite `NO FUE FACIL SEMANAS`
