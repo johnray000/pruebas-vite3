@@ -9,7 +9,10 @@ export default () => {
       </a>
       <RiInstagramLine size={30} className="mt-1 mx-auto text-gray-500" />
       <RiFacebookCircleLine size={30} className="mt-1 mx-auto text-gray-500" />
-      <RiArticleLine size={30} className="mt-1 mx-auto text-pink-500" />
+      <a href="https://blog.bexo.com.ve" target="_self" className="mt-1 mx-auto">
+      <RiArticleLine size={30} className=" text-pink-500" />
+      </a>
     </div>
+    
   );
 };
