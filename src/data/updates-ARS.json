@@ -1,1 +1,23 @@
-[{"fecha":"2024-06-09T22:40:09.369Z","dolarBlue":1294,"semana":23,"fecha_numerica":"9/6","fecha_abreviada":"9 jun"},{"fecha":"2024-06-10T08:20:33.647Z","dolarBlue":1294,"semana":24,"fecha_numerica":"10/6","fecha_abreviada":"10 jun"},{"fecha":"2024-06-10T13:18:56.288Z","dolarBlue":1294,"semana":24,"fecha_numerica":"10/6","fecha_abreviada":"10 jun"},{"fecha":"2024-06-10T18:21:06.152Z","dolarBlue":1294,"semana":24,"fecha_numerica":"10/6","fecha_abreviada":"10 jun"}]
+[
+  {
+    "fecha": "2024-06-10T08:20:33.647Z",
+    "dolarBlue": 1294,
+    "semana": 24,
+    "fecha_numerica": "10/6",
+    "fecha_abreviada": "10 jun"
+  },
+  {
+    "fecha": "2024-06-10T13:18:56.288Z",
+    "dolarBlue": 1294,
+    "semana": 24,
+    "fecha_numerica": "10/6",
+    "fecha_abreviada": "10 jun"
+  },
+  {
+    "fecha": "2024-06-10T18:21:06.152Z",
+    "dolarBlue": 1294,
+    "semana": 24,
+    "fecha_numerica": "10/6",
+    "fecha_abreviada": "10 jun"
+  }
+]
