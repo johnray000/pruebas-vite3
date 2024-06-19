@@ -1,6 +1,5 @@
 (desglosar estas tareas mejor si es necesario)
 
-
 "estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
 - Arreglar el grafico ARS esta tomando el primer precio de los 3 diarios q sea el ultimo
 - arreglar el link de WZP
