@@ -1,18 +1,18 @@
-(desglosar estas tareas mejor si es necesario)
-
-"estoy cambiando el responsive ChartVES_withTab porq se chorrea si le pongo 100% o full pero agarra delay para encoger si le pongo % tengo q conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras tanto avanzar)"
-- Arreglar el grafico ARS esta tomando el primer precio de los 3 diarios q sea el ultimo
+## PENDIENTE
+- agregar precio del blue en el card como VES
+- conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras avanzar)
 - arreglar el link de WZP
 - Agregar historico dolar oficial (asi sea para tener los datos)
-- *Arreglar el tema del update y el desplige*
-- agregar leyendita q diga blog y new para q llame la atencion
+- agregar hotspot en blog y new para q llame la atencion
 - pensar que meter en el espacio de precio del dia (post del blog y acentuadito el precio)
-- revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
 - Agregar mis colores
 - agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba) 
   - ya el ChartAreaPrueba funciona perfectamente
 
 ## READY
+- Arreglar el grafico ARS esta tomando el primer precio de los 3 diarios q sea el ultimo
+- revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
+- *Arreglar el tema del update y el desplige*
 - cambiar el nombre de la leyenda doalr Yadio a dolar paralelo o como sea
 - reducir a la mitad el tamaño de la card del precio del dia 
 - incorporar el link del blog 
