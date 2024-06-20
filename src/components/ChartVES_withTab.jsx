@@ -19,8 +19,12 @@ export default () => {
 
   const filterDataByOption = (option) => {
     if (option === "Días") {
-      const sampledData = jsonData.filter((entry, index) => index % 3 === 0);
-      return sampledData;
+      const dailyData = jsonData.reduce((acc, entry) => {
+        const date = entry.fecha.split("T")[0];
+        acc[date] = entry; // siempre reemplaza con el último registro del día
+        return acc;
+      }, {});
+      return Object.values(dailyData);
     } else if (option === "Semanas" || option === "Meses") {
       const groupedData = jsonData.reduce((acc, entry) => {
         const key =
@@ -29,19 +33,12 @@ export default () => {
             : entry.fecha_abreviada.substr(
                 entry.fecha_abreviada.indexOf(" ") + 1
               );
-        acc[key] = entry;
+        acc[key] = entry; // siempre reemplaza con el último registro del grupo
         return acc;
       }, {});
       return Object.values(groupedData);
     }
   };
-
-  // const mapDataKeys = (data) => { //cambiar el value dolarYadio a dolarParalelo
-  //   return data.map(entry => ({
-  //     ...entry,
-  //     "Dolar Vzla": entry.dolarYadio
-  //   }));
-  // };
 
   const mapDataKeys = (data) => {
     return data.map(entry => {
