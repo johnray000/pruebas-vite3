@@ -1,5 +1,5 @@
 ## PENDIENTE
-- agregar precio del blue en el card como VES
+- arreglar meses de ARS q da meses de 2023 al final
 - conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras avanzar)
 - arreglar el link de WZP
 - Agregar historico dolar oficial (asi sea para tener los datos)
@@ -10,6 +10,7 @@
   - ya el ChartAreaPrueba funciona perfectamente
 
 ## READY
+- agregar precio del blue en el card como VES
 - Arreglar el grafico ARS esta tomando el primer precio de los 3 diarios q sea el ultimo
 - revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
 - *Arreglar el tema del update y el desplige*
