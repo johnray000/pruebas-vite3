@@ -4,6 +4,7 @@ import ChartVES_withTab from "./components/ChartVES_withTab";
 import ChartARS_withTab from "./components/ChartARS_withTab";
 import { AreaChartExample } from "./components/ChartAreaPrueba";
 import { CardSimple } from "./components/CardSimple";
+import { CardSimple_ARS } from "./components/CardSimple_ARS";
 import RedesMenuIcon from "./components/Redes-Menu-Icons";
 
 //import "./App.css";
@@ -33,10 +34,11 @@ function App() {
         <CardSimple/>
       </div>
       <div className="grid md:col-start-2 md:row-start-3 md:row-span-9 row-span-4">
-        <ChartARS_withTab />
-        
+        <ChartARS_withTab />        
       </div>
-      {/* <p className="">Precios 2</p> */}
+      <div className="grid md:col-start-2">
+        <CardSimple_ARS/>
+      </div>
     </div>
   );
 }
