@@ -30,10 +30,11 @@ export default () => {
       return sampledData;
     } else if (option === "Semanas" || option === "Meses") {
       const groupedData = jsonData.reduce((acc, entry) => {
-        const key = option === "Semanas"
-          ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
-          : entry.fecha_abreviada.substr(entry.fecha_abreviada.indexOf(" ") + 1);
-        acc[key] = entry;
+        const key =
+          option === "Semanas"
+            ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
+            : `${new Date(entry.fecha).getFullYear()}-${new Date(entry.fecha).getMonth() + 1}`;
+        acc[key] = entry; // siempre reemplaza con el último registro del grupo
         return acc;
       }, {});
       return Object.values(groupedData);
