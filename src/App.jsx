@@ -21,7 +21,7 @@ function App() {
         <img
           src={bexoLogo}
           className="h-[12vh] min-h-20 -m-3 mx-auto"
-          alt="Vite logo"
+          alt="Logo"
         />
       </div>
       <div className="md:col-span-2 pt-2">        
