@@ -23,11 +23,15 @@ export default () => {
     oneYearAgo.setFullYear(now.getFullYear() - 1);
 
     if (option === "Días") {
-      // Filtra los datos del último año y muestrea cada tercer registro
-      const sampledData = jsonData
+      // Filtra los datos del último año y agrupa por día tomando el último registro de cada día
+      const dailyData = jsonData
         .filter(entry => new Date(entry.fecha) >= oneYearAgo)
-        .filter((entry, index) => index % 3 === 0);
-      return sampledData;
+        .reduce((acc, entry) => {
+          const date = entry.fecha.split("T")[0];
+          acc[date] = entry; // siempre reemplaza con el último registro del día
+          return acc;
+        }, {});
+      return Object.values(dailyData);
     } else if (option === "Semanas" || option === "Meses") {
       const groupedData = jsonData.reduce((acc, entry) => {
         const key =
