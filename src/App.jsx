@@ -7,7 +7,7 @@ import { CardSimple } from "./components/CardSimple";
 import { CardSimple_ARS } from "./components/CardSimple_ARS";
 import RedesMenuIcon from "./components/Redes-Menu-Icons";
 
-//import "./App.css";
+import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
