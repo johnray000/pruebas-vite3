@@ -1,15 +1,15 @@
 ## PENDIENTE
-- arreglar meses de ARS q da meses de 2023 al final
 - conseguir la forma eficiente de q adapte rapido, no se si es culpa del contenedor principal o q (mientras avanzar)
-- arreglar el link de WZP
-- Agregar historico dolar oficial (asi sea para tener los datos)
+- Ordenar datos de dolar oficial (asi sea para tener los datos)
 - agregar hotspot en blog y new para q llame la atencion
 - pensar que meter en el espacio de precio del dia (post del blog y acentuadito el precio)
-- Agregar mis colores
-- agregar dolar oficial en VES dual(PA VER Q TAL! si no dejar simple como estaba) 
+- Agregar mis colores a la paleta de tailwind
+- agregar dolar oficial en dual(PA VER Q TAL! si no dejar simple como estaba) 
   - ya el ChartAreaPrueba funciona perfectamente
 
 ## READY
+- arreglar meses de ARS q da meses de 2023 al final
+- arreglar el link de WZP
 - agregar precio del blue en el card como VES
 - Arreglar el grafico ARS esta tomando el primer precio de los 3 diarios q sea el ultimo
 - revisar el actions de update no alcanza pa renderizar hay q hacer build y deploy completo
