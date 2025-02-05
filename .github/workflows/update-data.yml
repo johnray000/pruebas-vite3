@@ -58,7 +58,11 @@ jobs:
         uses: actions/upload-artifact@v4  # Actualizado a v4
         with:
           path: './dist'
+          name: artifact  # Especifica el nombre del artefacto
+
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          artifact-name: artifact  # Usa el mismo nombre del artefacto aquí
