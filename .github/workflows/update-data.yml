@@ -59,10 +59,12 @@ jobs:
         with:
           path: './dist'
           name: artifact  # Especifica el nombre del artefacto
-
+          
+      - name: List uploaded artifacts
+        run: |
+          ls -la ./dist  # Verifica los archivos dentro de la carpeta dist
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-        with:
-          artifact-name: artifact  # Usa el mismo nombre del artefacto aquí
+        
