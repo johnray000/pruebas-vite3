@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # Actualizado a v4
+        uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v3
@@ -41,13 +41,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check for changes
+      - name: Check for changes  # Moved AFTER data update and build
         id: check_for_changes
-        uses: actions/checkout@v4 # Actualizado a v4
+        uses: actions/checkout@v4
         with:
           path: .
           fetch-depth: 0
-      - run: git diff --name-only | grep -q .
+      - run: git status --porcelain | grep -q . # More reliable check
 
       - name: Commit and Push changes (Only if data update changes files)
         run: |
@@ -60,18 +60,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN_DOS }}
         if: ${{ steps.check_for_changes.outcome == 'success' }} # Only commit if changes exist
 
-
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # Esta es la acción correcta para GitHub Pages
+        uses: actions/upload-pages-artifact@v3 # Correct action for GitHub Pages
         with:
           path: './dist'
-      
+
       - name: List uploaded artifacts
         run: ls -la ./dist
-        
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
