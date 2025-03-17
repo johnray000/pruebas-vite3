@@ -1,21 +1,17 @@
 name: Actualización de Datos y Despliegue
-
 on:
   schedule:
-    - cron: '0 8,13,18 * * 1-5'
+    - cron: '0 8,13,18 * * 1-5'  # Fixed spacing in cron expression
   push:
     branches: ['main']
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: 'pages'
   cancel-in-progress: true
-
 jobs:
   update-and-deploy:
     environment:
@@ -25,52 +21,38 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-
       - name: Install dependencies
         run: npm install
-
       - name: Ejecutar Actualización de Datos
         run: node ./src/data/update-data.js
-
       - name: Build
         run: npm run build
-
-      - name: Check for changes  # Moved AFTER data update and build
-        id: check_for_changes
-        uses: actions/checkout@v4
-        with:
-          path: .
-          fetch-depth: 0
-      - run: git status --porcelain | grep -q . # More reliable check
-
-      - name: Commit and Push changes (Only if data update changes files)
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git add -A
+          git status --porcelain
+          echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+      - name: Commit and Push changes
+        if: steps.check_changes.outputs.changes != '0'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m "Update data and README.md" # Adjust message as needed
+          git commit -m "Update data and README.md"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_DOS }}
-        if: ${{ steps.check_for_changes.outcome == 'success' }} # Only commit if changes exist
-
       - name: Setup Pages
         uses: actions/configure-pages@v3
-
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # Correct action for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-
-      - name: List uploaded artifacts
-        run: ls -la ./dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
