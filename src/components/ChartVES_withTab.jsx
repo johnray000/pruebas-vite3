@@ -24,19 +24,26 @@ export default () => {
         acc[date] = entry; // siempre reemplaza con el último registro del día
         return acc;
       }, {});
-      return Object.values(dailyData);
-    } else if (option === "Semanas" || option === "Meses") {
+      return Object.values(dailyData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    } else if (option === "Semanas") {
       const groupedData = jsonData.reduce((acc, entry) => {
-        const key =
-          option === "Semanas"
-            ? `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`
-            : entry.fecha_abreviada.substr(
-                entry.fecha_abreviada.indexOf(" ") + 1
-              );
+        const key = `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`;
         acc[key] = entry; // siempre reemplaza con el último registro del grupo
         return acc;
       }, {});
-      return Object.values(groupedData);
+      return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    } else if (option === "Meses") {
+      const groupedData = jsonData.reduce((acc, entry) => {
+        const fecha = new Date(entry.fecha);
+        // Usar año y mes como clave para agrupar correctamente
+        const key = `${fecha.getFullYear()}-${fecha.getMonth() + 1}`;
+        
+        if (!acc[key] || new Date(entry.fecha) > new Date(acc[key].fecha)) {
+          acc[key] = entry; // guardamos el último registro del mes
+        }
+        return acc;
+      }, {});
+      return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
     }
   };
 
@@ -54,9 +61,6 @@ export default () => {
 
   const handleDateOptionChange = (index) => {
     setSelectedIndex(index);
-    const filteredData = filterDataByOption(dateOptions[index]);
-    const mappedData = mapDataKeys(filteredData);
-    setChartData(mappedData);
   };
 
   return (
@@ -89,8 +93,7 @@ export default () => {
         valueFormatter={valueFormatter}
         curveType="natural"
         yAxisWidth={35}
-        autoMinValue={true}        
-        style={{}}
+        autoMinValue={true}
       />
     </div>
   );
