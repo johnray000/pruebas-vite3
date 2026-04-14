@@ -17,42 +17,39 @@ export default () => {
     setChartData(mappedData);
   }, [selectedIndex]);
 
-  const filterDataByOption = (option) => {
-    if (option === "Días") {
+ const filterDataByOption = (option) => {
   const now = new Date();
   const oneYearAgo = new Date(now);
   oneYearAgo.setFullYear(now.getFullYear() - 1);
 
-  const dailyData = jsonData
-    .filter(entry => new Date(entry.fecha) >= oneYearAgo)
-    .reduce((acc, entry) => {
-      const date = entry.fecha.split("T")[0];
-      acc[date] = entry;
+  if (option === "Días") {
+    const dailyData = jsonData
+      .filter(entry => new Date(entry.fecha) >= oneYearAgo)
+      .reduce((acc, entry) => {
+        const date = entry.fecha.split("T")[0];
+        acc[date] = entry;
+        return acc;
+      }, {});
+    return Object.values(dailyData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  } else if (option === "Semanas") {
+    const groupedData = jsonData.reduce((acc, entry) => {
+      const key = `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`;
+      acc[key] = entry;
       return acc;
     }, {});
-  return Object.values(dailyData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-}
-    } else if (option === "Semanas") {
-      const groupedData = jsonData.reduce((acc, entry) => {
-        const key = `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`;
-        acc[key] = entry; // siempre reemplaza con el último registro del grupo
-        return acc;
-      }, {});
-      return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-    } else if (option === "Meses") {
-      const groupedData = jsonData.reduce((acc, entry) => {
-        const fecha = new Date(entry.fecha);
-        // Usar año y mes como clave para agrupar correctamente
-        const key = `${fecha.getFullYear()}-${fecha.getMonth() + 1}`;
-        
-        if (!acc[key] || new Date(entry.fecha) > new Date(acc[key].fecha)) {
-          acc[key] = entry; // guardamos el último registro del mes
-        }
-        return acc;
-      }, {});
-      return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-    }
-  };
+    return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  } else if (option === "Meses") {
+    const groupedData = jsonData.reduce((acc, entry) => {
+      const fecha = new Date(entry.fecha);
+      const key = `${fecha.getFullYear()}-${fecha.getMonth() + 1}`;
+      if (!acc[key] || new Date(entry.fecha) > new Date(acc[key].fecha)) {
+        acc[key] = entry;
+      }
+      return acc;
+    }, {});
+    return Object.values(groupedData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  }
+};
 
   const mapDataKeys = (data) => {
     return data.map(entry => {
