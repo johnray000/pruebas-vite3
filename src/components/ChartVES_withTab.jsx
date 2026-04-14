@@ -19,12 +19,19 @@ export default () => {
 
   const filterDataByOption = (option) => {
     if (option === "Días") {
-      const dailyData = jsonData.reduce((acc, entry) => {
-        const date = entry.fecha.split("T")[0];
-        acc[date] = entry; // siempre reemplaza con el último registro del día
-        return acc;
-      }, {});
-      return Object.values(dailyData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  const now = new Date();
+  const oneYearAgo = new Date(now);
+  oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+  const dailyData = jsonData
+    .filter(entry => new Date(entry.fecha) >= oneYearAgo)
+    .reduce((acc, entry) => {
+      const date = entry.fecha.split("T")[0];
+      acc[date] = entry;
+      return acc;
+    }, {});
+  return Object.values(dailyData).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+}
     } else if (option === "Semanas") {
       const groupedData = jsonData.reduce((acc, entry) => {
         const key = `${new Date(entry.fecha).getFullYear()}-W${entry.semana}`;
