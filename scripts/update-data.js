@@ -2,14 +2,10 @@
 // Se ejecuta desde GitHub Actions (.github/workflows/update-data.yml).
 // Ya no toca archivos, no hace commit ni build.
 import { createClient } from "@supabase/supabase-js";
+import { error, revisarEntorno } from "./log.js";
 
-const { SUPABASE_URL, SUPABASE_SECRET_KEY } = process.env;
-if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
-  console.error("Faltan SUPABASE_URL o SUPABASE_SECRET_KEY en las variables de entorno.");
-  process.exit(1);
-}
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, {
+revisarEntorno(["SUPABASE_URL", "SUPABASE_SECRET_KEY"]);
+const supabase = createClient(process.env.SUPABASE_URL.trim(), process.env.SUPABASE_SECRET_KEY.trim(), {
   auth: { persistSession: false },
 });
 
@@ -67,12 +63,12 @@ async function main() {
 
   // Si alguna fuente falló, el job termina en rojo y GitHub te avisa por mail.
   if (fallas.length > 0) {
-    console.error("Fuentes con error:", fallas);
+    error("Fuentes con error:", fallas.join(" | "));
     process.exit(1);
   }
 }
 
 main().catch((err) => {
-  console.error(err.message);
+  error(err);
   process.exit(1);
 });
