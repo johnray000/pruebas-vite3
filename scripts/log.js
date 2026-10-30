@@ -1,3 +1,5 @@
+import { normalizarUrlSupabase } from "../src/lib/supabaseUrl.js";
+
 // En GitHub Actions, "::error::" hace que el mensaje aparezca destacado
 // en el resumen del workflow (sin tener que abrir el log).
 export function error(...partes) {
@@ -16,10 +18,17 @@ export function revisarEntorno(nombres) {
     process.exit(1);
   }
   for (const n of nombres.filter((n) => n.endsWith("_URL"))) {
-    const v = process.env[n].trim();
-    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(v)) {
-      error(`${n} no tiene la forma https://xxxxx.supabase.co (sin nada después de .co). Revisala.`);
+    const original = process.env[n].trim();
+    const normal = normalizarUrlSupabase(original);
+    if (!normal) {
+      error(
+        `${n} no parece una URL de Supabase (largo ${original.length}, ` +
+          `${original.includes("supabase") ? "contiene" : "NO contiene"} "supabase"). ` +
+          `Debería ser https://xxxxx.supabase.co — la ves en Supabase → Project Settings → Data API.`
+      );
       process.exit(1);
     }
+    if (normal !== original) console.log(`${n}: se corrigió el formato automáticamente.`);
+    process.env[n] = normal;
   }
 }
