@@ -13,13 +13,16 @@ const supabase = createClient(
 
 // data*.json y updates*.json se solapan casi por completo, pero cada uno
 // tiene algunos registros que el otro no; se cargan ambos y se deduplica.
+// ORDEN IMPORTANTE: updates va primero y data después, para que ante la misma
+// fecha gane data*.json (lo que mostraba la web). updates.json tiene al menos un
+// valor corrupto (2025-05-06: 2732.24 en vez de 110.24).
 // DATA_DIR permite leer los JSON desde otra carpeta (el workflow usa los de main).
 const DIR = process.env.DATA_DIR || "src/data";
 const ARCHIVOS = [
-  { archivo: `${DIR}/data.json`, moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
   { archivo: `${DIR}/updates.json`, moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
-  { archivo: `${DIR}/data-ARS.json`, moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
+  { archivo: `${DIR}/data.json`, moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
   { archivo: `${DIR}/updates-ARS.json`, moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
+  { archivo: `${DIR}/data-ARS.json`, moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
 ];
 
 async function main() {
@@ -57,7 +60,9 @@ async function main() {
     const lote = filas.slice(i, i + LOTE);
     const { error: e } = await supabase
       .from("cotizaciones")
-      .upsert(lote, { onConflict: "moneda,fecha", ignoreDuplicates: true });
+      // Sobrescribe filas existentes con el valor de los JSON (corrige cargas anteriores).
+      // Las filas nuevas del runner no están en los JSON, así que no se tocan.
+      .upsert(lote, { onConflict: "moneda,fecha" });
     if (e) throw new Error(`Error en el lote que empieza en ${i}: ${e.message}`);
     console.log(`  ${Math.min(i + LOTE, filas.length)}/${filas.length}`);
   }

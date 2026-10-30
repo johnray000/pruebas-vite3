@@ -47,6 +47,23 @@ async function main() {
       if (!Number.isFinite(valor) || valor <= 0) {
         throw new Error(`${moneda}: valor inválido (${crudo})`);
       }
+
+      // Control de saltos absurdos: si el valor nuevo es más del triple (o menos
+      // de un tercio) del último guardado, es casi seguro una falla de la API.
+      const { data: ultimo, error: errorUltimo } = await supabase
+        .from("cotizaciones")
+        .select("valor")
+        .eq("moneda", moneda)
+        .order("fecha", { ascending: false })
+        .limit(1);
+      if (errorUltimo) throw new Error(`${moneda}: no se pudo leer el último valor (${errorUltimo.message})`);
+      const anterior = Number(ultimo?.[0]?.valor);
+      if (anterior > 0 && (valor > anterior * 3 || valor < anterior / 3)) {
+        throw new Error(
+          `${moneda}: ${valor} parece un error de la API (el último guardado es ${anterior}). No se guardó.`
+        );
+      }
+
       return { moneda, fuente, valor, fecha };
     })
   );
@@ -56,8 +73,8 @@ async function main() {
 
   // Solo se guardan valores buenos: los errores ya no ensucian el histórico.
   if (filas.length > 0) {
-    const { error } = await supabase.from("cotizaciones").insert(filas);
-    if (error) throw new Error(`Supabase: ${error.message}`);
+    const { error: errorInsert } = await supabase.from("cotizaciones").insert(filas);
+    if (errorInsert) throw new Error(`Supabase: ${errorInsert.message}`);
     console.log("Guardado:", filas);
   }
 
