@@ -1,0 +1,59 @@
+name: Migrar histórico a Supabase
+
+# Carga en la BD los JSON de main y verifica que todo funcione.
+# Se puede correr las veces que quieras: no duplica filas.
+on:
+  push:
+    branches: ['base-de-datos']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  migrar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Traer los JSON más recientes de main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: datos-main
+          sparse-checkout: src/data
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: 1) Cargar el histórico en Supabase
+        run: node scripts/migrar-json.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          DATA_DIR: datos-main/src/data
+
+      - name: 2) Probar el runner nuevo (guarda la cotización de ahora)
+        run: node scripts/update-data.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+
+      - name: 3) Verificar que la web puede leer (y no escribir)
+        run: node scripts/verificar-lectura.js
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+
+      - name: 4) Probar que el sitio compila
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}

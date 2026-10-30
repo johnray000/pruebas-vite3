@@ -14,11 +14,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, {
 
 // data*.json y updates*.json se solapan casi por completo, pero cada uno
 // tiene algunos registros que el otro no; se cargan ambos y se deduplica.
+// DATA_DIR permite leer los JSON desde otra carpeta (el workflow usa los de main).
+const DIR = process.env.DATA_DIR || "src/data";
 const ARCHIVOS = [
-  { archivo: "src/data/data.json", moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
-  { archivo: "src/data/updates.json", moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
-  { archivo: "src/data/data-ARS.json", moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
-  { archivo: "src/data/updates-ARS.json", moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
+  { archivo: `${DIR}/data.json`, moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
+  { archivo: `${DIR}/updates.json`, moneda: "VES", fuente: "yadio", campo: "dolarYadio" },
+  { archivo: `${DIR}/data-ARS.json`, moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
+  { archivo: `${DIR}/updates-ARS.json`, moneda: "ARS", fuente: "criptoya_ccb", campo: "dolarBlue" },
 ];
 
 const porClave = new Map();
