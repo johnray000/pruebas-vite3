@@ -1,0 +1,2 @@
+@CONTEXTO.md
+@AGENTS.md
