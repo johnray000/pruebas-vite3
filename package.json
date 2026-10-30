@@ -8,14 +8,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "actualizar": "node --env-file=.env.local scripts/update-data.js",
+    "migrar": "node --env-file=.env.local scripts/migrar-json.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
     "@remixicon/react": "^4.1.1",
+    "@supabase/supabase-js": "^2.118.0",
     "@tremor/react": "^3.14.0",
-    "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
